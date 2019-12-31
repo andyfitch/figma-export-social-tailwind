@@ -1,0 +1,76 @@
+<p>Please ensure you have named your layers as lowercase names of the social network, e.g.: 'facebook', 'youtube', 'linkedin'.</p>
+<p>Note: Share URLs will output with missing query string parameters that you will need to fill in.</p>
+<div>
+  <label id="linkTypeShareLabel">Share <input type="radio" name="linkTypeShare" value="share" checked /></label id="linkTypeURL"><br>
+  <label id="linkTypeUrlLabel">URL <input type="radio" name="linkTypeUrl" value="url" /></label>
+</div>
+<div id="shareUrls" hidden>
+  <label style="display: block">Facebook: <input type="text" name="facebookUrl" /></label>
+  <label style="display: block">Twitter: <input type="text" name="twitterUrl" /></label>
+  <label style="display: block">YouTube: <input type="text" name="youtubeUrl" /></label>
+</div>
+<div>
+  <textarea rows="15" cols="70" id="ta"></textarea>
+</div>
+<div>
+  <button id="export">Export</button>
+</div>
+
+<script>
+document.getElementById('export').onclick = () => {
+  parent.postMessage({ pluginMessage: 'export' }, '*')
+}
+
+document.getElementById('linkTypeShareLabel').onclick = () => {
+  document.getElementById('shareUrls').hidden = true
+  document.querySelector(['[name="linkTypeUrl"]']).checked = false
+  document.querySelector(['[name="linkTypeShare"]']).checked = true
+}
+document.getElementById('linkTypeUrlLabel').onclick = () => {
+  document.getElementById('shareUrls').hidden = false
+  document.querySelector(['[name="linkTypeUrl"]']).checked = true
+  document.querySelector(['[name="linkTypeShare"]']).checked = false
+}
+
+onmessage = event => {
+  const message = event.data.pluginMessage
+  const flexDir = (message.dir == 'x' ? 'row' : 'col')
+
+  if (message.type == 'selections') {
+    let lis = ``
+    message.selections.forEach((x, i) => {
+      let liClass = ''
+      if (message.margins[i] > 0) {
+        liClass += 'm' + (message.dir == 'x' ? 'l' : 't') + '-' + message.margins[i]
+      }
+      let link = 'javascript:;'
+      let $link = document.querySelector(`[name="${x.name}Url"]`)
+      if (document.querySelector(['[name="linkTypeShare"]']).checked) {
+        if (x.name == 'facebook') {
+          link = 'https://www.facebook.com/sharer.php?u='
+        }
+        if (x.name == 'twitter') {
+          link = 'https://twitter.com/intent/tweet?url=&text=&via='
+        }
+        if (x.name == 'linkedin') {
+          link = 'https://www.linkedin.com/sharing/share-offsite/?url='
+        }
+      } else if (document.querySelector(['[name="linkTypeUrl"]']).checked && $link) {
+        link = $link.value
+      }
+      lis += `
+  <li class="${liClass}">
+    <a href="${link}">
+      ${x.svg}
+    </a>
+  </li>
+`
+      if (i < message.selections.length-1) {
+        lis += `
+`
+      }
+    })
+    document.getElementById('ta').value = `<ul class="flex flex-${flexDir}">${lis}</ul>`
+  }
+}
+</script>

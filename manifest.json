@@ -1,0 +1,7 @@
+{
+  "name": "Export Social icons from Figma to Tailwind code",
+  "id": "793512028945424277",
+  "api": "1.0.0",
+  "main": "code.js",
+  "ui": "ui.html"
+}
