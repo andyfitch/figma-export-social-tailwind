@@ -1,0 +1,19 @@
+<div class="container">
+  <p>Please ensure you have named your layers as lowercase names of the social network, e.g.: 'facebook', 'twitter', 'youtube'.</p>
+  <p>Note: Share URLs will output with missing query string parameters that you will need to fill in.</p>
+  <div>
+    <label id="linkTypeShareLabel"><input type="radio" name="linkTypeShare" value="share" checked /> Share current page</label><br>
+    <label id="linkTypeUrlLabel"><input type="radio" name="linkTypeUrl" value="url"> Links to social channels</label>
+  </div>
+  <div id="shareUrls" class="labels" hidden>
+    <label><span>Facebook page:</span><input type="text" name="facebookUrl" /></label>
+    <label><span>Twitter profile:</span><input type="text" name="twitterUrl" /></label>
+    <label><span>YouTube channel:</span><input type="text" name="youtubeUrl" /></label>
+  </div>
+  <div>
+    <textarea id="ta" style="height: 375px;"></textarea>
+  </div>
+  <div>
+    <button id="export">Export to Tailwind</button>
+  </div>
+</div>

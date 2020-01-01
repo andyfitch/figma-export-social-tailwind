@@ -1,5 +1,10 @@
 # Export Social icons from Figma to Tailwind code
 
+**Setup:**
+1. Ensure you're running Node 10+
+2. Install packages via `yarn`
+3. Run watch command `npx webpack --mode=development --watch`
+
 **How it works:**
 1. Create each social icon as one flattened layer with no groups etc.
 2. Ensure the layer is named as the lowercase name of the social network, e.g. facebook, twitter, linkedin

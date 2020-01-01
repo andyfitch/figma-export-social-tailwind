@@ -1,0 +1,41 @@
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  background: white;
+  margin: 0;
+  padding: 0;
+}
+.container {
+  padding: 1px 10px;
+}
+textarea {
+  width: 100%;
+  font-size: 12px;
+  font-family: 'Courier New', Courier, monospace;
+  border: solid 1px #aaa;
+  margin: 10px 0;
+}
+.labels {
+  width: 400px;
+}
+.labels label {
+  display: flex;
+  margin-top: 10px;
+}
+.labels span {
+  width: 30%;
+  line-height: 32px;
+  display: block;
+}
+.labels input {
+  width: 70%;
+  font-size: 13px;
+  padding: 6px 5px;
+  display: block;
+}
+button {
+  width: 120px;
+  height: 30px;
+  background-color: #fff;
+  border: solid 1px #ccc;
+}
