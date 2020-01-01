@@ -1,5 +1,7 @@
 # Export Social icons from Figma to Tailwind code
 
+![Demo](https://raw.githubusercontent.com/andyfitch/figma-export-social-tailwind/master/demo.gif)
+
 **Setup:**
 1. Ensure you're running Node 10+
 2. Install packages via `yarn`
